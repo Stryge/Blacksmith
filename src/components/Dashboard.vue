@@ -3,10 +3,10 @@
 		<GoBack />
 		<Artist :artistId="artistId" />
 		<div>Albums :</div>
-		<Albums :artistId="artistId" />
+		<Albums :artistId="artistId"/>
 	</div>
 	<div v-else>
-		<p>go to the search panel</p>
+		<Search />
 	</div>
 </template>
 
@@ -14,6 +14,7 @@
 import Artist from '@/components/Artist.vue'
 import Albums from '@/components/ArtistAlbums.vue'
 import GoBack from '@/components/GoBack.vue'
+import Search from '@/components/Search.vue'
 
 export default {
 	name: 'Dashboard',
@@ -22,16 +23,12 @@ export default {
 		Artist,
 		Albums,
 		GoBack,
+		Search,
 	},
 	data() {
 		return {
 			artistId: this.$router.currentRoute._value.params['artistId']
 		}
 	},
-	methods: {
-		goBack() {
-			this.$router.go(-1)
-		}
-	}
 }
 </script>

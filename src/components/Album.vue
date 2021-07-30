@@ -1,13 +1,15 @@
 <template>
 	<GoBack />
-	<AlbumInfo :albumId="albumId" />
-	<AlbumTracks :albumId="albumId" />
+	<AlbumInfo :albumId="albumId" @click="test"/>
+	<AlbumTracks :albumId="albumId" @play-track='getTrackPreviewUrl'/>
+	<Player :previewUrl="trackPreviewUrl" />
 </template>
 
 <script>
 import AlbumTracks from '@/components/AlbumTracks.vue'
 import AlbumInfo from '@/components/AlbumInfo.vue'
 import GoBack from '@/components/GoBack.vue'
+import Player from '@/components/Player.vue'
 import axios from 'axios'
 
 export default {
@@ -16,13 +18,22 @@ export default {
 		AlbumTracks,
 		AlbumInfo,
 		GoBack,
+		Player,
 	},
 	data() {
 		return {
 			albumId: this.$router.currentRoute._value.params['albumId'],
-			album: {},
-			imageUrl:"",
-			artist:{},
+			trackPreviewUrl: '',
+			playerState: 'pause'
+		}
+	},
+	methods: {
+		getTrackPreviewUrl(event) {
+			this.playerState = "play"
+			this.trackPreviewUrl = event
+		},
+		test() {
+			console.log(this.trackPreviewUrl)
 		}
 	},
 	mounted() {

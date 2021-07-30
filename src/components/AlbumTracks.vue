@@ -1,11 +1,7 @@
 <template>
 	<ul>
 		<li class="track" v-for="track in tracks" :key="track">
-			<div>
-				<span>{{track.track_number}}</span>
-				<span>{{track.name}}</span>
-				<div>{{track.artists[0].name}}</div>
-			</div>
+			<Track :track="track" @play-track="playTrack"/>
 			<msToMinutes :track="track" />
 		</li>
 	</ul>
@@ -14,16 +10,35 @@
 <script>
 import axios from 'axios'
 import msToMinutes from '@/components/msToMinutes'
+import Track from '@/components/Track'
 
 export default {
 	name: 'AlbumTracks',
 	props: [ 'albumId' ],
+	emits: [ 'playTrack' ],
 	components: {
 		msToMinutes,
+		Track,
 	},
 	data () {
 		return {
 			tracks: [],
+			url: ''
+		}
+	},
+	computed: {
+		testret() {
+			return 'test' + 'ret'
+		}
+	},
+	methods: {
+		ttest() {
+			return 'ttest return'
+		},
+		playTrack(event) {
+			this.$emit('playTrack', event)
+			console.log('album track', event)
+			this.url = event
 		}
 	},
 	mounted() {

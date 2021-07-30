@@ -25,7 +25,7 @@ export default {
   name: 'Home',
   components: {
     Login,
-    Dashboard
+    Dashboard,
   },
   data() {
 	return {
