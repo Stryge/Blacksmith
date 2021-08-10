@@ -12,8 +12,8 @@ export default {
 	emits: [ 'playTrack' ],
 	methods: {
 		playTrack() {
-			console.log('track event', this.track.preview_url)
-			this.$emit('playTrack', this.track.preview_url)
+			this.$store.commit('loadTrack', this.track.preview_url)
+			this.$mitt.emit('playTrack')
 		}
 	}
 }

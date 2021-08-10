@@ -23,22 +23,6 @@ export default {
 	data () {
 		return {
 			tracks: [],
-			url: ''
-		}
-	},
-	computed: {
-		testret() {
-			return 'test' + 'ret'
-		}
-	},
-	methods: {
-		ttest() {
-			return 'ttest return'
-		},
-		playTrack(event) {
-			this.$emit('playTrack', event)
-			console.log('album track', event)
-			this.url = event
 		}
 	},
 	mounted() {

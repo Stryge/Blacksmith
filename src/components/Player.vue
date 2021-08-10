@@ -1,5 +1,7 @@
 <template>
-	<button @click="changeState">{{state}}</button>
+	<div>
+		<button @click="changeState">{{state}}</button>
+	</div>
 </template>
 
 <script>
@@ -9,7 +11,6 @@ let stream = undefined
 
 export default {
 	name: 'Player',
-	props: [ 'previewUrl' ],
 	data() {
 		return {
 			state: 'pause',
@@ -27,18 +28,18 @@ export default {
 			}
 		}
 	},
-	watch: {
-		previewUrl(newUrl) {
+	created() {
+		this.$mitt.on('playTrack',() => {
 			if (stream) stream.stop()
+			let url = this.$store.state.trackUrl
 			stream = new Howl({
-				src: [newUrl],
+				src: [url],
 				ext: ['mp3'],
 				autoplay: true,
 				html5: true
 			})
-			console.log('youpi')
 			stream.play()
-		}
-	},
+		}) 
+	}
 }
 </script>

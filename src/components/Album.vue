@@ -2,14 +2,12 @@
 	<GoBack />
 	<AlbumInfo :albumId="albumId" @click="test"/>
 	<AlbumTracks :albumId="albumId" @play-track='getTrackPreviewUrl'/>
-	<Player :previewUrl="trackPreviewUrl" />
 </template>
 
 <script>
 import AlbumTracks from '@/components/AlbumTracks.vue'
 import AlbumInfo from '@/components/AlbumInfo.vue'
 import GoBack from '@/components/GoBack.vue'
-import Player from '@/components/Player.vue'
 import axios from 'axios'
 
 export default {
@@ -18,7 +16,6 @@ export default {
 		AlbumTracks,
 		AlbumInfo,
 		GoBack,
-		Player,
 	},
 	data() {
 		return {

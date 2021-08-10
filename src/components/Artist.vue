@@ -11,9 +11,11 @@
 
 <script>
 import axios from 'axios'
+import DisplayImage from '@/components/DisplayImage'
 
 export default {
 	name: 'Artist',
+	components: [ DisplayImage ],
 	props: { 
 		artistId: {
 			type: String
@@ -26,7 +28,7 @@ export default {
 	data () {
 		return {
 			artist: {},
-			image: "",
+			image: [],
 		}
 	},
 	methods: {
